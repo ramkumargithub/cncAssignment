@@ -3,6 +3,7 @@ Editor: RED Robot Editor 0.9.5
 
 Execution: 
 >>>python Assignment.py 
+
 Enter GCode File Name! rectangle.gcode
 
 Symbols Ignored in rectangle.gcode file:
