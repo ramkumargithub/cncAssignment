@@ -1,2 +1,77 @@
-# cncAssignment
-python cnc gcode parser
+Python Version: 3.8.5
+Editor: RED Robot Editor 0.9.5
+
+Execution: 
+>>>python Assignment.py 
+Enter GCode File Name! rectangle.gcode
+
+Symbols Ignored in rectangle.gcode file:
+
+1. % 		- Initialisation code used at the beginning and end of the program.
+2. (xxx) 	- Comment
+3. Oxxx		- Program name
+4. Nx		- Optional line number at the beginning of a line.
+
+Flow of Execution:
+
+Assignment.py > gcode.py > gcodesegment.py > MachineClientAPI.py
+
+Note: 
+
+(X0.0 Y0.0 - BOTTOM LEFT CORNER)
+
+(G54 - USE FIXTURE OFFSET)
+(G90 - RESET TO ABSOLUTE POSITION MODE)
+(G00 - RAPID TO SAFE PLANE)
+(G01 - CUTTING STARTS)
+(G17 - WHAT PLANE AN ARC IS MACHINED ON XY)
+(G40 - CUTTER DIAMETER COMPENSATION)
+(G49 - CANCELS TOOL LENGTH COMPENSATION)
+(G80 - CANNED CYCLE CANCEL)
+(G94 - FEED PER MINUTE)
+(G91 - SWTICH TO INCREMENTAL POSTIONING NOT ABSOLUTE)
+(G28 - GO BACK TO RECORDED ORGIN POINT IN MACHINE COORDINATE WORKSPACE)
+(G21 - SWTICH CNC TO METRIC MODE)
+(G90 - ABSOLUTE POSTIONING)
+
+(M09 - TURN OFF COOLANT)
+(M08 - TURN ON COOLANT)
+(M05 - SPINDLE STOP)
+(M06 - CHANGE TOOL)
+(M03 - TURN SPINDLE CLOCKWISE)
+(M30 - PROGRAM END)
+
+(F600 - FEED RATE)
+
+(T01 - LOAD TOOL NUMBER #01)
+
+(S2000 - SET SPINDLE SPEED 2000RPM)
+
+
+Sample Output:
+> N1 G00 G17 G21 G40 G49 G80 G94 (SAFETY BLOCK TO ENSURE MACHINE IS IN SAFE MODE)
+	G 00
+RAPID TO SAFE PLANE
+	G 17
+WHAT PLANE AN ARC IS MACHINED ON XY
+	G 21
+SWTICH CNC TO METRIC MODE
+	G 40
+CUTTER DIAMETER COMPENSATION
+	G 49
+CANCELS TOOL LENGTH COMPENSATION
+	G 80
+CANNED CYCLE CANCEL
+	G 94
+FEED PER MINUTE
+
+Sample Output:
+> N10 G01 X-12.000 Y-10.000 F600.
+	G 01 (-12.000, -10.000, 0)
+CUTTING STARTS
+Moving to X=-12.000 Y=-10.000 Z=0.000 [mm].
+	F 600.
+FEED RATE = 600.
+Using feed rate 600. [mm/s].
+
+
